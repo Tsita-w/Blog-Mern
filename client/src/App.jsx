@@ -13,20 +13,20 @@ function App() {
   useEffect(() => { fetchPosts() }, [])
 
   const fetchPosts = async () => {
-    const res = await axios.get('http://localhost:5000/api/posts')
+    const res = await axios.get('https://blog-mern-7h6l.onrender.com/api/posts')
     setPosts(res.data)
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (!title || !content) return alert("Fill in the fields!")
-    await axios.post('http://localhost:5000/api/posts', { title, content })
+    await axios.post('https://blog-mern-7h6l.onrender.com/api/posts', { title, content })
     setTitle(''); setContent(''); fetchPosts()
   }
 
   const deletePost = async (id) => {
     if (window.confirm("Delete this post?")) {
-      await axios.delete(`http://localhost:5000/api/posts/${id}`)
+      await axios.delete(`https://blog-mern-7h6l.onrender.com/api/posts/${id}`)
       fetchPosts()
     }
   }
@@ -40,7 +40,7 @@ function App() {
 
   // --- NEW: SAVE UPDATE ---
   const handleUpdate = async (id) => {
-    await axios.put(`http://localhost:5000/api/posts/${id}`, { title: editTitle, content: editContent })
+    await axios.put(`https://blog-mern-7h6l.onrender.com/api/posts/${id}`, { title: editTitle, content: editContent })
     setEditingId(null)
     fetchPosts()
   }
